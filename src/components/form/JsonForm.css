@@ -1,5 +1,6 @@
 .json_form{
     width: 100%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,6 +9,8 @@
 }
 .json_form_content{
     width: 100%;
+    margin-bottom: 5rem;
+    /* min-height: 100%; */
 }
 .input_section{
     font-size: 1rem;
@@ -47,6 +50,27 @@
 }
 
 .input_section_type label{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.input_section_size{
+    font-size: 1rem;
+    background-color: rgba(233, 255, 250, 0.786);
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.input_section_size label{
     width: 100%;
     display: flex;
     align-items: center;
@@ -121,9 +145,53 @@ cursor: pointer;
     border-bottom: 1px solid grey;
 }
 
+ .form_actions{
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    bottom: 0.5%;
+    right: 0.5%;
+    width: 49vw;
+    padding: 1rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 20px 0px #76767633;
 
+}
 
+select{
+    width: fit-content;
+    height: 40px;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    background-color: #d4efff;
+}
+option{
+    width: 30%;
+    height: 40px;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+}
 
+.toppings_section{
+    padding:0rem 2rem;
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+@media only screen and (max-width:800px){
+
+ .form_actions{
+    width: 99vw;
+}
+
+}
+
+/* __________ */
 .tooltip {
     width: 100px;
     height: 100px;

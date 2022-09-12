@@ -9,15 +9,6 @@ export default function HomePage() {
     async function getJSONData(data) {
         const json2Data = JSON.parse(data)
         setJsonData(json2Data);
-        // setJsonData(data);
-        // const response = await fetch('/api/created-events', {
-        //   method: 'POST',
-        //   body: JSON.stringify(values),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        // }
-        // );
     }
 
   return (
@@ -27,7 +18,6 @@ export default function HomePage() {
             <JsonEditor getData={getJSONData}/>
         </div>
         <div className="home_right">
-            {/* <JsonForm {...jsonData} /> */}
             <JsonForm data={jsonData} />
         </div>
     </div>

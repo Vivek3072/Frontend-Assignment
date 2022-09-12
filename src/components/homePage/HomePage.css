@@ -17,6 +17,7 @@
 
 .home_left{
     /* width: 50vw; */
+    background-color: rgba(239, 239, 239, 0.371);
     grid-area: home_left;
 }
 
