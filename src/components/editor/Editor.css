@@ -1,0 +1,41 @@
+.json_editor{
+    min-height: 95vh;
+}
+.editor_form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.editor_form textarea{
+    height: 80vh;
+    min-width: 95%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(48, 50, 53);
+    color: white;
+    font-size: 1rem;
+    /* counter-increment: linenumber; */
+}
+
+
+.button-div{
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+.button{
+    background-color: #0085d2;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+.button:hover{
+    background-color: #006dac;
+   cursor: pointer;
+}
+
