@@ -12,6 +12,16 @@
     margin-bottom: 5rem;
     /* min-height: 100%; */
 }
+.empty_form_page{
+    /* border: 2px solid red; */
+    height: 70vh;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 .input_section{
     font-size: 1rem;
     background-color: rgba(233, 255, 250, 0.786);
@@ -125,20 +135,31 @@ cursor: pointer;
 }
 
 .active{
-    color: #00a3ff;
-    border: 1px solid #00a3ff;
-    background-color: #d4efff;
+    color: #ffffff;
+    border: 1px solid #6abeff;
+    background-color: #6abeff;
+}
+.active::placeholder{
+    color: #ffffff;
 }
 
 .Slices{
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    border-top: 1px solid grey;
-    margin-top: 2rem;
-    padding-top: 1rem;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
 }
+/* 
+.Slices_label{
+    border: 1px solid rgb(150, 13, 255);
+    
+}
+.Slices_value{
+    border: 1px solid rgb(255, 13, 13);
+} */
 .line_break{
     margin: 1rem auto;
     width: 90%;

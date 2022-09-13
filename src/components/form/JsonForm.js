@@ -3,6 +3,8 @@ import "./JsonForm.css";
 import { BsInfoCircleFill } from "react-icons/bs";
 
 export default function JsonForm(props) {
+  // const [isActive, setIsActive] = useState(true);
+
   const [values, setValues] = useState({
     pizzaName: "",
   });
@@ -14,6 +16,9 @@ export default function JsonForm(props) {
       ...values,
       [name]: value,
     });
+  };
+  const handleSubmit = (e) => {
+    console.log(values,"form submitted");
   };
 
   return (
@@ -28,7 +33,7 @@ export default function JsonForm(props) {
                 <label htmlFor="pizza_name">
                   {props.data[0] ? props.data[0].label : ""}
                   {props.data[0] ? (
-                    <span className="required" style={{ color: "red" }}>
+                    <span className="required" style={{ color: "red" , margin:"2px"  }}>
                       {" "}
                       {props.data[0].validate.required && "*"}{" "}
                     </span>
@@ -60,7 +65,7 @@ export default function JsonForm(props) {
                   value={values.pizzaName}
                   onChange={handleChange}
                   disabled={
-                    !(props.data[0] ? props.data[0].validate.immutable : "")
+                    (props.data[0] ? props.data[0].validate.immutable : "")
                   }
                 />
               </div>
@@ -71,7 +76,7 @@ export default function JsonForm(props) {
                 <label htmlFor="pizza_type">
                   {props.data[1] ? props.data[1].label : ""}
                   {props.data[1] ? (
-                    <span className="required" style={{ color: "red" }}>
+                    <span className="required" style={{ color: "red" , margin:"2px"  }}>
                       {" "}
                       {props.data[1].validate.required && "*"}{" "}
                     </span>
@@ -103,19 +108,21 @@ export default function JsonForm(props) {
                           <div className="subParameters_options" key={spt.sort}>
                             {spt
                               ? spt.validate.options?.map((opt) => {
+                                console.log(spt , "spt")
                                   return (
                                     <>
                                       <input
                                         type="text"
                                         className={`radio_options_input ${
                                           spt.validate.defaultValue ===
-                                          opt.label
+                                          opt.value
                                             ? "active"
                                             : ""
                                         }`}
                                         key={opt.sort}
                                         placeholder={opt.label}
                                         disabled
+                                        // onClick={(e)=>{setIsActive(!isActive)}}
                                         //  value={opt.value}
                                       />
                                     </>
@@ -129,29 +136,30 @@ export default function JsonForm(props) {
                             <div className="Slices">
                               {spt.subParameters
                                 ? spt.subParameters.map((spt2) => {
+                                  console.log(spt2 , "spt2")
                                     return (
                                       <>
-                                        <div className="Slices_label">
+                                       {spt2.label === "Slices"? <div className="Slices_label">
                                           {spt2.label === "Slices"
                                             ? spt2.label
                                             : ""}
-                                          {spt2 ? (
+                                          {spt2.label === "Slices" ? (
                                             <span
                                               className="required"
-                                              style={{ color: "red" }}
+                                              style={{ color: "red" , margin:"2px"  }}
                                             >
-                                              {" "}
                                               {spt2.validate.required &&
-                                                "*"}{" "}
+                                                "*"}
                                             </span>
                                           ) : (
                                             ""
                                           )}
                                         </div>
-                                        <div className="Slices_value">
-                                          <select name="" id="">
-                                            {/* {spt2.validate? spt2.validate.options.map((spt2options)=>{
-            console.log(spt2options ,"spt2")
+                                        :""}
+                                        {spt2.label === "Slices"? <div className="Slices_value">
+                                         {spt2.label === "Slices"? <select name="" id="">
+                                            {spt2.label === "Slices"? spt2.validate.options.map((spt2options)=>{
+            console.log(spt2options ,"spt2options")
                             return (<>
                               <option value={spt2options?spt2options.value:""}>{spt2options?spt2options.label:""}</option>
                               hdj
@@ -159,14 +167,8 @@ export default function JsonForm(props) {
                             )
                           })
                           :
-                          ""} */}
-                                            <option value={spt2.defaultValue}>
-                                              1
-                                            </option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                          </select>
-                                        </div>
+                          ""} </select> :""}
+                                        </div> :""}
                                       </>
                                     );
                                   })
@@ -181,9 +183,9 @@ export default function JsonForm(props) {
                   : ""}
               </div>
 
-              {/* PIZZA TYPE SECTION  */}
+              {/* PIZZA TYPE SECTION ENDS */}
 
-              {props.data.subParameters &&
+              {/* {props.data.subParameters &&
               props.data.subParameters.uiType === "Radio" ? (
                 <div className="input_section_type">
                   <label htmlFor="pizza_type"> Pizza type Radio </label>
@@ -198,7 +200,7 @@ export default function JsonForm(props) {
                 </div>
               ) : (
                 ""
-              )}
+              )} */}
 
               {/* Toppings SECTION STARTS  */}
               {props.data[2] && (
@@ -206,7 +208,7 @@ export default function JsonForm(props) {
                   <label htmlFor="toppings">
                     {props.data[2] ? props.data[2].label : ""}
                     {props.data[2] ? (
-                      <span className="required" style={{ color: "red" }}>
+                      <span className="required" style={{ color: "red" , margin:"2px"  }}>
                         {" "}
                         {props.data[2].validate.required && "*"}{" "}
                       </span>
@@ -218,7 +220,7 @@ export default function JsonForm(props) {
 
                   {props.data[2]
                     ? props.data[2].subParameters.map((tpng) => {
-                        console.log(tpng, "tpng");
+                  
                         return (
                           <>
                             <div className="toppings_section" key={tpng.sort}>
@@ -266,7 +268,7 @@ export default function JsonForm(props) {
                   <label htmlFor="size_label">
                     {props.data[3] ? props.data[3].label : ""}
                     {props.data[3] ? (
-                      <span className="required" style={{ color: "red" }}>
+                      <span className="required" style={{ color: "red" , margin:"2px"  }}>
                         {" "}
                         {props.data[3].validate.required && "*"}{" "}
                       </span>
@@ -295,12 +297,14 @@ export default function JsonForm(props) {
 
               <div className="form_actions">
                 <div className="toggle_button">Hide Advanced</div>
-                <div className="button">Submit</div>
+                <div className="button" onClick={handleSubmit}>Submit</div>
               </div>
             </form>
           </>
         ) : (
           <>
+          <div className="empty_form_page">
+
             <lottie-player
               src="https://assets10.lottiefiles.com/packages/lf20_0zomy8eb.json"
               background="transparent"
@@ -309,7 +313,8 @@ export default function JsonForm(props) {
               loop
               autoplay
             ></lottie-player>
-            <p>Please paste your JSON to see the form</p>
+            <p style={{fontSize:"20px" , textAlign:"center"}}>Please paste your JSON in the left panel to create a pizza! <span style={{fontSize:"25px"}}> 🍕 </span></p>
+          </div>
           </>
         )}
       </div>
