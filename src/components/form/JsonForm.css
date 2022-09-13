@@ -212,6 +212,25 @@ option{
 
 }
 
+/* ______MODAL______ CSS  */
+.pizza_ready{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.ordered_pizza_details{
+    margin: 1rem;
+    font-size: 20px;
+}
+.modal_btn{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+/* ______MODAL______ CSS  */
+
 /* __________ */
 .tooltip {
     width: 100px;

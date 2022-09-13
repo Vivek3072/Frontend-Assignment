@@ -1,14 +1,30 @@
 import React, { useState } from "react";
 import "./JsonForm.css";
 import { BsInfoCircleFill } from "react-icons/bs";
+import Modal from "react-modal";
 
 export default function JsonForm(props) {
   // const [isActive, setIsActive] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [values, setValues] = useState({
     pizzaName: "",
   });
-  console.log(props.data, "props");
+  // console.log(props.data, "props");
+  Modal.setAppElement("#root");
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "20px",
+      padding: "2rem",
+    },
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,7 +34,8 @@ export default function JsonForm(props) {
     });
   };
   const handleSubmit = (e) => {
-    console.log(values,"form submitted");
+    console.log(values, "form submitted");
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -33,7 +50,10 @@ export default function JsonForm(props) {
                 <label htmlFor="pizza_name">
                   {props.data[0] ? props.data[0].label : ""}
                   {props.data[0] ? (
-                    <span className="required" style={{ color: "red" , margin:"2px"  }}>
+                    <span
+                      className="required"
+                      style={{ color: "red", margin: "2px" }}
+                    >
                       {" "}
                       {props.data[0].validate.required && "*"}{" "}
                     </span>
@@ -65,7 +85,7 @@ export default function JsonForm(props) {
                   value={values.pizzaName}
                   onChange={handleChange}
                   disabled={
-                    (props.data[0] ? props.data[0].validate.immutable : "")
+                    props.data[0] ? props.data[0].validate.immutable : ""
                   }
                 />
               </div>
@@ -76,7 +96,10 @@ export default function JsonForm(props) {
                 <label htmlFor="pizza_type">
                   {props.data[1] ? props.data[1].label : ""}
                   {props.data[1] ? (
-                    <span className="required" style={{ color: "red" , margin:"2px"  }}>
+                    <span
+                      className="required"
+                      style={{ color: "red", margin: "2px" }}
+                    >
                       {" "}
                       {props.data[1].validate.required && "*"}{" "}
                     </span>
@@ -108,7 +131,7 @@ export default function JsonForm(props) {
                           <div className="subParameters_options" key={spt.sort}>
                             {spt
                               ? spt.validate.options?.map((opt) => {
-                                console.log(spt , "spt")
+                                  console.log(spt, "spt");
                                   return (
                                     <>
                                       <input
@@ -136,39 +159,69 @@ export default function JsonForm(props) {
                             <div className="Slices">
                               {spt.subParameters
                                 ? spt.subParameters.map((spt2) => {
-                                  console.log(spt2 , "spt2")
+                                    console.log(spt2, "spt2");
                                     return (
                                       <>
-                                       {spt2.label === "Slices"? <div className="Slices_label">
-                                          {spt2.label === "Slices"
-                                            ? spt2.label
-                                            : ""}
-                                          {spt2.label === "Slices" ? (
-                                            <span
-                                              className="required"
-                                              style={{ color: "red" , margin:"2px"  }}
-                                            >
-                                              {spt2.validate.required &&
-                                                "*"}
-                                            </span>
-                                          ) : (
-                                            ""
-                                          )}
-                                        </div>
-                                        :""}
-                                        {spt2.label === "Slices"? <div className="Slices_value">
-                                         {spt2.label === "Slices"? <select name="" id="">
-                                            {spt2.label === "Slices"? spt2.validate.options.map((spt2options)=>{
-            console.log(spt2options ,"spt2options")
-                            return (<>
-                              <option value={spt2options?spt2options.value:""}>{spt2options?spt2options.label:""}</option>
-                              hdj
-                            </>
-                            )
-                          })
-                          :
-                          ""} </select> :""}
-                                        </div> :""}
+                                        {spt2.label === "Slices" ? (
+                                          <div className="Slices_label">
+                                            {spt2.label === "Slices"
+                                              ? spt2.label
+                                              : ""}
+                                            {spt2.label === "Slices" ? (
+                                              <span
+                                                className="required"
+                                                style={{
+                                                  color: "red",
+                                                  margin: "2px",
+                                                }}
+                                              >
+                                                {spt2.validate.required && "*"}
+                                              </span>
+                                            ) : (
+                                              ""
+                                            )}
+                                          </div>
+                                        ) : (
+                                          ""
+                                        )}
+                                        {spt2.label === "Slices" ? (
+                                          <div className="Slices_value">
+                                            {spt2.label === "Slices" ? (
+                                              <select name="" id="">
+                                                {spt2.label === "Slices"
+                                                  ? spt2.validate.options.map(
+                                                      (spt2options) => {
+                                                        console.log(
+                                                          spt2options,
+                                                          "spt2options"
+                                                        );
+                                                        return (
+                                                          <>
+                                                            <option
+                                                              value={
+                                                                spt2options
+                                                                  ? spt2options.value
+                                                                  : ""
+                                                              }
+                                                            >
+                                                              {spt2options
+                                                                ? spt2options.label
+                                                                : ""}
+                                                            </option>
+                                                            hdj
+                                                          </>
+                                                        );
+                                                      }
+                                                    )
+                                                  : ""}{" "}
+                                              </select>
+                                            ) : (
+                                              ""
+                                            )}
+                                          </div>
+                                        ) : (
+                                          ""
+                                        )}
                                       </>
                                     );
                                   })
@@ -208,7 +261,10 @@ export default function JsonForm(props) {
                   <label htmlFor="toppings">
                     {props.data[2] ? props.data[2].label : ""}
                     {props.data[2] ? (
-                      <span className="required" style={{ color: "red" , margin:"2px"  }}>
+                      <span
+                        className="required"
+                        style={{ color: "red", margin: "2px" }}
+                      >
                         {" "}
                         {props.data[2].validate.required && "*"}{" "}
                       </span>
@@ -220,7 +276,6 @@ export default function JsonForm(props) {
 
                   {props.data[2]
                     ? props.data[2].subParameters.map((tpng) => {
-                  
                         return (
                           <>
                             <div className="toppings_section" key={tpng.sort}>
@@ -268,7 +323,10 @@ export default function JsonForm(props) {
                   <label htmlFor="size_label">
                     {props.data[3] ? props.data[3].label : ""}
                     {props.data[3] ? (
-                      <span className="required" style={{ color: "red" , margin:"2px"  }}>
+                      <span
+                        className="required"
+                        style={{ color: "red", margin: "2px" }}
+                      >
                         {" "}
                         {props.data[3].validate.required && "*"}{" "}
                       </span>
@@ -297,27 +355,57 @@ export default function JsonForm(props) {
 
               <div className="form_actions">
                 <div className="toggle_button">Hide Advanced</div>
-                <div className="button" onClick={handleSubmit}>Submit</div>
+                <div className="button" onClick={handleSubmit}>
+                  Submit
+                </div>
               </div>
             </form>
           </>
         ) : (
           <>
-          <div className="empty_form_page">
-
-            <lottie-player
-              src="https://assets10.lottiefiles.com/packages/lf20_0zomy8eb.json"
-              background="transparent"
-              speed="1"
-              style={{ width: " 300px", height: "300px" }}
-              loop
-              autoplay
-            ></lottie-player>
-            <p style={{fontSize:"20px" , textAlign:"center"}}>Please paste your JSON in the left panel to create a pizza! <span style={{fontSize:"25px"}}> 🍕 </span></p>
-          </div>
+            <div className="empty_form_page">
+              <lottie-player
+                src="https://assets10.lottiefiles.com/packages/lf20_0zomy8eb.json"
+                background="transparent"
+                speed="1"
+                style={{ width: " 300px", height: "300px" }}
+                loop
+                autoplay
+              ></lottie-player>
+              <p style={{ fontSize: "20px", textAlign: "center" }}>
+                Please paste your JSON in the left panel to create a pizza!{" "}
+                <span style={{ fontSize: "25px" }}> 🍕 </span>
+              </p>
+            </div>
           </>
         )}
       </div>
+
+      {/* ______MODAL______ */}
+
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={handleSubmit}
+        contentLabel="My dialog"
+        style={customStyles}
+      >
+        <h1 className="text_center">Pizza is Ready!!!🍕</h1>
+        <div className="pizza_ready">
+          <lottie-player
+            src="https://assets7.lottiefiles.com/packages/lf20_jBvjF3.json"
+            background="transparent"
+            speed="1"
+            style={{ width: " 300px", height: "300px" }}
+            loop
+            autoplay
+          ></lottie-player>
+        </div>
+        <button className="button modal_btn" onClick={handleSubmit}>
+          Order more
+        </button>
+      </Modal>
+
+      {/* ______MODAL______ */}
     </>
   );
 }
